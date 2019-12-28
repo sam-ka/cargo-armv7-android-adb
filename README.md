@@ -1,7 +1,7 @@
-This container serves as a portable cross-compilation environment for building ARMv7 android software that's written in Rust. It also serves as a (relatively) detailed guide on how to setup such an environment.
+This container serves as a portable cross-compilation environment for building Rust code targeting ARMv7 android. It also serves as a (relatively) detailed guide on how to setup such an environment from a fresh Debian 10 "Buster" installation.
 
 Prerequisites:
-Make sure that `adb` server is already running and listening on the default before running this container. Also make sure that the server is authorized to connect to `adbd` running on the target hardware. A good way to do this is to run `adb devices`. Another option is to try running a shell on your hardware `adb shell`.
+Make sure that `adb` server is running on the host and listening on the default port. Also make sure that the server is authorized to connect to the target hardware. A good way to do this is to run `adb devices`. Another option is to try running a shell on your hardware `adb shell`.
 
 Usage:
 ````
