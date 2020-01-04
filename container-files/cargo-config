@@ -1,0 +1,4 @@
+[target.armv7-linux-androideabi]
+linker = "/home/cargo-user/android-ndk-r20b-linux-x86_64/bin/armv7a-linux-androideabi16-clang"
+ar     = "/home/cargo-user/android-ndk-r20b-linux-x86_64/bin/armv7a-linux-androideabi16-clang"
+runner = "android-adb-runner.sh"

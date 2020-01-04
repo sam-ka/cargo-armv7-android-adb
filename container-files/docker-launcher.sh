@@ -1,21 +1,25 @@
 #!/bin/sh
+#
+# Copyright (C) 2020 Kutometa SPLC, Kuwait
+# License: LGPLv3 
+# www.ka.com.kw
+#
+# This file is responsible for making sure the cargo's environment 
+# is correctly set up before running container args.
+#
+# This script is ran inside the container
+#
+# Curently it checks that 
+#   * '/crate' is mounted
+#   * Host ADB is reachable
+#   * cargo's cwd is '/crate'
+#   * add proper target flag
+#
+
 set -eu
 
 [ -d "/crate" ] || {
     echo "ERROR: Mount crate directory at /crate" 1>&2
-    exit 1
-}
-
-# Make sure that target is armv7-linux-androideabi
-VALID_TARGET=""
-for arg in "$@"; do 
-    if [ $arg = "--target=armv7-linux-androideabi" ]; then
-        VALID_TARGET="YES"
-    fi
-done
-
-[ "$VALID_TARGET" = "YES" ] || {
-    echo "ERROR: target must be armv7-linux-androideabi" 1>&2
     exit 1
 }
 
@@ -28,4 +32,7 @@ nc -z localhost 5037 || {
     exit 1
 }
 
-cd "/crate" && cargo "$@"
+cargocmd="$1"
+shift
+cd "/crate" && cargo "$cargocmd" "--target=armv7-linux-androideabi" "$@"
+
